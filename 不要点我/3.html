@@ -1,0 +1,51 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <title>时间已过计时器</title>  
+    <style>  
+        body {  
+            background-image: url('your-background-image.jpg'); /* 替换成你的背景图片路径 */  
+            background-size: cover;  
+            background-attachment: fixed;  
+            font-family: Arial, sans-serif;  
+            color: aquamarine;  
+            text-align: center;  
+            display: flex;  
+            align-items: center;  
+            justify-content: center;  
+            height: 100vh;  
+            margin: 0;  
+            padding: 0;  
+            box-sizing: border-box;  
+        }  
+        #timer {  
+            font-size: 48px;  
+            margin-bottom: 20px;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <div id="timer">已经过去XX天XX小时XX秒</div>  
+    <script>  
+        function updateTimer() {  
+            var pastDate = new Date(Date.UTC(new Date().getFullYear() - 1, 4, 20)); // 去年5月20日（注意JavaScript月份从0开始）  
+            var currentDate = new Date(); // 当前日期和时间  
+            var differenceInMilliseconds = currentDate - new Date(pastDate.getUTCFullYear(), pastDate.getUTCMonth(), pastDate.getUTCDate()); // 时间差（毫秒）  
+              
+            var seconds = Math.floor(differenceInMilliseconds / 1000);  
+            var minutes = Math.floor(seconds / 60);  
+            var hours = Math.floor(minutes / 60);  
+            var days = Math.floor(hours / 24);  
+              
+            hours = hours % 24;  
+            minutes = minutes % 60;  
+            seconds = seconds % 60;  
+              
+            document.getElementById('timer').innerHTML = "我们已经在一起了 " + days + " 天 " + hours + " 小时 " + seconds + " 秒";  
+        }  
+          
+        updateTimer(); // 初始化时间显示  
+        setInterval(updateTimer, 1000); // 每秒更新时间显示  
+    </script>  
+</body>  
+</html>
